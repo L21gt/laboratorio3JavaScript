@@ -19,6 +19,52 @@
  * Pruebe el xcript llamando a la secuencia: 
  */
 
+        // Constructor para crear un objeto de imagen
+    function Image(title, artist, date) {
+        this.title = title;
+        this.artist = artist;
+        this.date = date;
+    }
+
+    // Objeto images con su lista y métodos
+    const images = {
+        list: [], // La lista para almacenar las imágenes
+        
+        // Método contains: verifica si ya existe una imagen en la lista
+        contains: function(title) {
+            // Busca en la lista si alguna imagen tiene el mismo título
+            return this.list.some(image => image.title === title);
+        },
+        
+        // Método add: agrega una nueva imagen a la lista si no existe
+        add: function(title, artist, date) {
+            // Solo agrega si la imagen no está ya en la lista
+            if (!this.contains(title)) {
+                const newImage = new Image(title, artist, date);
+                this.list.push(newImage);
+            } else {
+                console.log(`La imagen "${title}" ya está en la lista.`);
+            }
+        },
+        
+        // Método show: muestra todas las imágenes en la lista
+        show: function() {
+            if (this.list.length === 0) {
+                console.log("No hay imágenes en la lista.");
+            } else {
+                this.list.forEach(image => {
+                    console.log(`${image.title} (${image.artist}, ${image.date})`);
+                });
+            }
+        },
+        
+        // Método clear: elimina todas las imágenes de la lista
+        clear: function() {
+            this.list = [];
+            console.log("Todas las imágenes han sido eliminadas.");
+        }
+    };
+
 images.add('Mona Lisa', 'Leonardo da Vinci', 1503);
 images.add('The Last Supper', 'Leonardo da Vinci', 1495);
 images.add('The Starry Night', 'Vincent van Gogh', 1889);
